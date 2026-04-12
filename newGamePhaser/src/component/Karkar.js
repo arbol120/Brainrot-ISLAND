@@ -5,6 +5,6 @@ export default class Karkar extends Enemy {
         super(scene, x, y, 'karkar', 60, 2);
         this.setScale(2);
         this.shootInterval = 1200;
-        this.health = 8; 
+        this.health = 4; 
     }
 }

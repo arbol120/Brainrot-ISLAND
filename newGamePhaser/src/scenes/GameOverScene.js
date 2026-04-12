@@ -9,10 +9,8 @@ export default class GameOverScene extends Scene {
         const cx = this.scale.width / 2;
         const cy = this.scale.height / 2;
 
-        // Fondo oscuro
         this.add.rectangle(cx, cy, this.scale.width, this.scale.height, 0x000000, 0.85);
 
-        // Texto Game Over
         this.add.text(cx, cy - 60, 'GAME OVER', {
             fontSize: '64px',
             fill: '#ff0000',
@@ -21,13 +19,11 @@ export default class GameOverScene extends Scene {
             strokeThickness: 6
         }).setOrigin(0.5);
 
-        // Subtexto
-        this.add.text(cx, cy + 20, 'EPSTEIN TE HA TOCADO...', {
+        this.add.text(cx, cy + 20, 'BRAINROT ISLAND te venció...', {
             fontSize: '24px',
             fill: '#ffffff'
         }).setOrigin(0.5);
 
-        // Botón reintentar
         const btn = this.add.text(cx, cy + 90, '[ REINTENTAR ]', {
             fontSize: '28px',
             fill: '#ffff00',
@@ -36,9 +32,17 @@ export default class GameOverScene extends Scene {
         }).setOrigin(0.5).setInteractive({ useHandCursor: true });
 
         btn.on('pointerover', () => btn.setFill('#ff8800'));
-        btn.on('pointerout', () => btn.setFill('#ffff00'));
+        btn.on('pointerout',  () => btn.setFill('#ffff00'));
         btn.on('pointerdown', () => {
+
+            this.registry.remove('currentHealth');
+            this.registry.remove('maxHealth');
+            this.registry.remove('pizzaCount');
+            this.registry.remove('powerDamage');
+
             this.scene.stop('GameOverScene');
+            this.scene.stop('PlayaScene');
+            this.scene.stop('MainScene');
             this.scene.start('MainScene');
         });
     }

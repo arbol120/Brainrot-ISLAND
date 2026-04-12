@@ -26,7 +26,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     update(time) {
-        const speed = 200;
+        const speed = 300;
         this.setVelocity(0);
 
         // Movimiento WASD

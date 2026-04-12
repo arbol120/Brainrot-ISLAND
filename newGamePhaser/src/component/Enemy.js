@@ -16,20 +16,21 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
 
         // 👇 Enemigo inactivo los primeros 2 segundos
         this.active_delay = false;
-        this.scene.time.delayedCall(2000, () => {
+        this.scene.time.delayedCall(1000, () => {
             this.active_delay = true;
         });
     }
 
     update(player, time) {
-        if (!player || !this.active || !this.active_delay) return; // 👈 espera el delay
+    if (!player || !this.active) return;
+    if (!this.active_delay && !this.isBoss) return; 
 
-        this.scene.physics.moveToObject(this, player, this.speed);
+    this.scene.physics.moveToObject(this, player, this.speed);
 
-        if (time > this.shootCooldown) {
-            this.shoot(player);
-            this.shootCooldown = time + this.shootInterval;
-        }
+    if (time > this.shootCooldown) {
+        this.shoot(player);
+        this.shootCooldown = time + this.shootInterval;
+    }
     }
 
     shoot(player) {

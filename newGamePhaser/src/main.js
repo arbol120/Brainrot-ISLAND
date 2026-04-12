@@ -1,24 +1,24 @@
 import Phaser from './lib/phaser.js'
+import TitleScene from './scenes/TitleScene.js'
+import IntroScene from './scenes/IntroScene.js'
 import LoadingScene from './scenes/LoadingScene.js'
 import MainScene from './scenes/MainScene.js'
+import PlayaScene from './scenes/PlayaScene.js'
+import TransitionScene from './scenes/TransitionScene.js'
+import WinScene from './scenes/WinScene.js'
 import GameOverScene from './scenes/GameOverScene.js'
 
-const config = { width: 800, height: 480 };
+const config = { width: 800, height: 640 };
 
 export default new Phaser.Game({
     type: Phaser.AUTO,
     width: config.width,
     height: config.height,
     parent: "canvas",
-    scale: {
-        autoCenter: Phaser.Scale.CENTER_BOTH
-    },
+    scale: { autoCenter: Phaser.Scale.CENTER_BOTH },
     physics: {
         default: 'arcade',
-        arcade: {
-            gravity: { y: 0 },
-            debug: false
-        }
+        arcade: { gravity: { y: 0 }, debug: false }
     },
-    scene: [LoadingScene, MainScene, GameOverScene] // 👈 LoadingScene primero
+    scene: [TitleScene, IntroScene, LoadingScene, MainScene, PlayaScene, TransitionScene, GameOverScene, WinScene]
 });

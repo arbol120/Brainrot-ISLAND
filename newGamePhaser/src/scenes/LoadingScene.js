@@ -6,29 +6,34 @@ export default class LoadingScene extends Scene {
     }
 
     preload() {
-        this.load.image('background', 'assets/background.png');
-        this.load.image('player', 'assets/jugador.png');
-        this.load.tilemapTiledJSON('map', 'assets/mapa.tmj');
-        this.load.image('tiles', 'assets/platformPack_tilesheet.png');
-        this.load.image('karkar', 'assets/KARKAR.png');
-        this.load.image('tung', 'assets/tung.png');
-        this.load.image('bullet', 'assets/bullet.png');
-        this.load.image('archivo',  'assets/archivo.png');
-        this.load.image('archivo2', 'assets/archivo2.png');
-        this.load.image('vida_4', 'assets/vida_4.png');
-        this.load.image('vida_3', 'assets/vida_3.png');
-        this.load.image('vida_2', 'assets/vida_2.png');
-        this.load.image('vida_1', 'assets/vida_1.png');
-        this.load.image('vida_0', 'assets/vida_0.png');
-
-        // Sprites pantalla de carga
-        this.load.image('agentea', 'assets/agentea.png');
-        this.load.image('agentev', 'assets/jugador.png');
-        this.load.image('agenteb', 'assets/agenteb.png');
-        this.load.image('agentet', 'assets/agentet.png');
-        this.load.image('jeff',    'assets/jeff.png');
-    }
-
+    this.load.image('background', 'assets/background.png');
+    this.load.image('player', 'assets/jugador.png');
+    this.load.tilemapTiledJSON('map', 'assets/mapa.tmj');
+    this.load.tilemapTiledJSON('playa', 'assets/playa.tmj'); // 👈
+    this.load.image('tiles', 'assets/platformPack_tilesheet.png');
+    this.load.image('tiles_playa', 'assets/tilemap_packed.png'); // 👈
+    this.load.image('karkar', 'assets/KARKAR.png');
+    this.load.image('tung', 'assets/tung.png');
+    this.load.image('emi', 'assets/emi.png');
+    this.load.image('bullet', 'assets/bullet.png');
+    this.load.image('archivo', 'assets/archivo.png');
+    this.load.image('archivo2', 'assets/archivo2.png');
+    this.load.image('agentea', 'assets/agentea.png');
+    this.load.image('agentev', 'assets/jugador.png');
+    this.load.image('agenteb', 'assets/agenteb.png');
+    this.load.image('agentet', 'assets/agentet.png');
+    this.load.image('jeff', 'assets/jeff.png');
+    this.load.image('vida_4', 'assets/vida_4.png');
+    this.load.image('vida_3', 'assets/vida_3.png');
+    this.load.image('vida_2', 'assets/vida_2.png');
+    this.load.image('vida_1', 'assets/vida_1.png');
+    this.load.image('vida_0', 'assets/vida_0.png');
+    this.load.image('cesar',    'assets/cesar.png');
+    this.load.image('vacuna',   'assets/vacuna.png');
+    this.load.image('buzzball', 'assets/buzzball.png');
+    this.load.image('diddy', 'assets/diddy.png');
+    this.load.image('trump', 'assets/trump.png');
+}
     create() {
         const cx = this.scale.width / 2;
         const cy = this.scale.height / 2;
