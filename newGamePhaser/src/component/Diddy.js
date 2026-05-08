@@ -5,11 +5,12 @@ export default class Diddy extends Boss {
         super(
             scene, x, y,
             'diddy',
-            40,   // 40 balas para morir (más vida)
-            2,    // daño: media pizza
-            160,  // más rápido
-            300   // dispara cada 0.3s (muy rápido)
+            40,  
+            2,   
+            160,  
+            300   
         );
-        this.shootCooldown = 0; // 👈 empieza a disparar de inmediato
+        this.setScale(2.5)
+        this.shootCooldown = 0; 
     }
 }

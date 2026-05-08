@@ -8,7 +8,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.body.setGravityY(-this.scene.physics.world.gravity.y);
         this.setCollideWorldBounds(true);
 
-        // WASD para moverse
+
         this.keys = this.scene.input.keyboard.addKeys({
             up:    Phaser.Input.Keyboard.KeyCodes.W,
             down:  Phaser.Input.Keyboard.KeyCodes.S,
@@ -21,8 +21,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
         // Control de disparo
         this.shootCooldown = 0;
-        this.shootInterval = 400; // ms entre disparos
-        this.bulletIndex = 0;     // alterna entre archivo y archivo2
+        this.shootInterval = 400; 
     }
 
     update(time) {

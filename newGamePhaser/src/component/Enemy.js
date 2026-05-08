@@ -14,7 +14,7 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
         this.shootCooldown = 0;
         this.shootInterval = 2000;
 
-        // 👇 Enemigo inactivo los primeros 2 segundos
+       
         this.active_delay = false;
         this.scene.time.delayedCall(1000, () => {
             this.active_delay = true;

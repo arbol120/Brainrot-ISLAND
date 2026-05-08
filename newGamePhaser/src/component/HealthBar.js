@@ -42,7 +42,7 @@ export default class HealthBar {
         this.updateSprites();
     }
 
-    // 👇 Buzzball: añade 1 pizza extra al máximo y la cura
+    
     addMaxPizza() {
         this.pizzaCount++;
         this.maxHealth    += 4;

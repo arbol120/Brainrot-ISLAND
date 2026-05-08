@@ -44,6 +44,5 @@ export default class Scene extends Phaser.Scene {
         return this.entityMap.get(name);
     }
 
-    // 👇 QUITAMOS el update() de aquí para que cada escena maneje el suyo
-    // Las subclases como MainScene tienen su propio update() y Phaser lo llama directo
+    
 }

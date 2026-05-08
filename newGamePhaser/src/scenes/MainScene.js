@@ -11,12 +11,11 @@ import Trump from "../component/Trump.js";
 import Scene from "../engine/Scene.js";
 
 export default class MainScene extends Scene {
-    constructor() {
-        super('MainScene');
+    constructor(key = 'MainScene') {
+        super(key);
     }
 
     init(data) {
-        // Recibe qué mapa usar, por defecto el primero
         this.mapKey      = data?.mapKey      || 'map';
         this.tilesKey    = data?.tilesKey    || 'tiles';
         this.tilesetName = data?.tilesetName || 'platformPack_tilesheet';
@@ -33,11 +32,11 @@ export default class MainScene extends Scene {
         this.events.off('changeMap');
 
         this.add.image(400, 320, 'background');
+
         const map = this.make.tilemap({ key: this.mapKey });
         const tiles = map.addTilesetImage(this.tilesetName, this.tilesKey);
         this.layer = map.createLayer(this.layerName, tiles, 0, 0);
         this.layer.setCollisionByExclusion([-1]);
-        
         this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 
         this.enemyBullets  = this.physics.add.group();
@@ -47,12 +46,16 @@ export default class MainScene extends Scene {
         this.registry.set('TungClass',   Tung);
         this.registry.set('KarkarClass', Karkar);
         this.registry.set('EmiClass',    Emi);
-        this.registry.set('DiddyClass', Diddy);
-        this.registry.set('JeffClass',  Jeff);
-        this.registry.set('TrumpClass', Trump);
+        this.registry.set('DiddyClass',  Diddy);
+        this.registry.set('JeffClass',   Jeff);
+        this.registry.set('TrumpClass',  Trump);
 
-        this.player = new Player(this, 400, 300, 'player').setScale(1.5);
-        this.healthBar = new HealthBar(this);
+        // 👇 usa el personaje seleccionado
+        const playerSprite = this.registry.get('playerSprite') ?? 'jugador';
+        this.player = new Player(this, 400, 300, playerSprite).setScale(1.5);
+        this.player.setDepth(50);
+
+        this.healthBar   = new HealthBar(this);
         this.itemManager = new ItemManager(this);
 
         this.roundManager = new RoundManager(this, this.startRound);
@@ -70,6 +73,7 @@ export default class MainScene extends Scene {
         this.physics.add.overlap(this.playerBullets, this.enemies, (bullet, enemy) => {
             bullet.destroy();
             const dmg = this.itemManager.getDamage(1);
+            console.log('Golpeando a:', enemy.texture.key, 'vida:', enemy.health); // 👈 tempo
             enemy.takeDamage(dmg);
         });
 
@@ -94,12 +98,18 @@ export default class MainScene extends Scene {
             });
         });
 
+        // 👇 un solo playerDead con todo
         this.events.on('playerDead', () => {
+            if (this.sound.get('jeff_theme')) {
+                this.sound.stopByKey('jeff_theme');
+            }
+            if (this.roundManager) {
+                this.roundManager.stopMusic();
+            }
             this.scene.launch('GameOverScene');
             this.scene.pause();
         });
 
-       
         this.events.on('changeMap', () => {
             this.registry.set('currentHealth', this.healthBar.currentHealth);
             this.registry.set('maxHealth',     this.healthBar.maxHealth);
@@ -107,8 +117,8 @@ export default class MainScene extends Scene {
             this.registry.set('powerDamage',   this.itemManager.powerDamageActive);
 
             this.scene.start('TransitionScene', {
-            nextScene: 'PlayaScene',
-            message:   '¡Nuevas amenazas en la playa!'
+                nextScene: 'PlayaScene',
+                message:   '¡Nuevas amenazas en la playa!'
             });
         });
     }

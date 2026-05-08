@@ -3,7 +3,7 @@ export default class ItemManager {
     this.scene = scene;
     this.items = scene.physics.add.group();
 
-    // 👇 recupera si la vacuna estaba activa
+
     this.powerDamageActive = scene.registry.get('powerDamage') ?? false;
 
     scene.physics.add.overlap(scene.player, this.items, (player, item) => {
@@ -12,7 +12,7 @@ export default class ItemManager {
     });
 }
 
-    // Suelta 1-3 items aleatorios en posiciones random del mapa
+    
     spawnItems() {
         const tipos   = ['cesar', 'vacuna', 'buzzball'];
         const cantidad = Phaser.Math.Between(1, 3);

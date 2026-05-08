@@ -5,11 +5,12 @@ export default class Jeff extends Boss {
         super(
             scene, x, y,
             'jeff',
-            60,   
+            80,   
             3,    
             140,  
-            250   
+            150   
         );
+         this.setScale(2.5)
         this.shootCooldown = 0; 
     }
 }

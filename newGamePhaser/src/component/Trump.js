@@ -10,6 +10,7 @@ export default class Trump extends Boss {
             125,  
             250   
         );
+         this.setScale(2.5)
         this.shootCooldown = 0;
     }
 }

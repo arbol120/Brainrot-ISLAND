@@ -2,9 +2,7 @@ import MainScene from "./MainScene.js";
 
 export default class PlayaScene extends MainScene {
     constructor() {
-        super();
-        // 👇 sobreescribe la key manualmente
-        this.sys && (this.sys.settings.key = 'PlayaScene');
+        super('PlayaScene');
     }
 
     init() {
@@ -16,4 +14,32 @@ export default class PlayaScene extends MainScene {
             startRound:  4
         });
     }
+
+   create() {
+    super.create();
+
+    // 👇 destruye todas las barras de vida anteriores
+    this.enemies.getChildren().forEach(e => {
+        if (e.hpBarBg)   e.hpBarBg.destroy();
+        if (e.hpBarFill) e.hpBarFill.destroy();
+        if (e.hpBarName) e.hpBarName.destroy();
+    });
+
+    // limpia enemigos spawneados por super.create()
+    this.enemies.clear(true, true);
+    this.roundManager.transitioning = true;
+
+    this.roundManager.showBossIntro(
+        'diddy',
+        'D I D D Y',
+        '"El Fanático de los niños y Justin Bieber"',
+        'diddy_theme',
+        () => {
+            const Diddy = this.registry.get('DiddyClass');
+            const diddy = new Diddy(this, 400, 200);
+            this.enemies.add(diddy);
+            this.roundManager.transitioning = false;
+        }
+    );
+}
 }

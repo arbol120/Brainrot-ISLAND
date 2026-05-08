@@ -9,10 +9,10 @@ export default class IntroScene extends Scene {
         const cx = this.scale.width / 2;
         const cy = this.scale.height / 2;
 
-        // Fondo negro tipo terminal CIA
+        
         this.add.rectangle(cx, cy, this.scale.width, this.scale.height, 0x000000);
 
-        // Logo CIA arriba
+        
         this.add.text(cx, 40, '🔒 AGENCIA CENTRAL DE INTELIGENCIA', {
             fontSize: '14px',
             fill: '#cc0000',
@@ -26,10 +26,10 @@ export default class IntroScene extends Scene {
             letterSpacing: 6
         }).setOrigin(0.5);
 
-        // Línea separadora
+        
         this.add.rectangle(cx, 78, 600, 1, 0x333333);
 
-        // Párrafos de la historia
+        
         const parrafos = [
             { texto: 'AGENTE, ESCUCHA CON ATENCIÓN.', color: '#ff4444', delay: 0 },
             { texto: 'Eres uno de nuestros mejores agentes de campo.', color: '#ffffff', delay: 1200 },
@@ -46,7 +46,7 @@ export default class IntroScene extends Scene {
             { texto: 'El mundo está contando contigo.', color: '#ffffff', delay: 17000 },
         ];
 
-        // Renderiza cada línea con efecto de escritura
+        
         parrafos.forEach((p, i) => {
             this.time.delayedCall(p.delay, () => {
                 const y = 110 + i * 38;
@@ -57,7 +57,7 @@ export default class IntroScene extends Scene {
                     fontFamily: 'Courier New',
                 }).setAlpha(0);
 
-                // Fade in
+            
                 this.tweens.add({
                     targets: textObj,
                     alpha: 1,

@@ -7,6 +7,7 @@ import PlayaScene from './scenes/PlayaScene.js'
 import TransitionScene from './scenes/TransitionScene.js'
 import WinScene from './scenes/WinScene.js'
 import GameOverScene from './scenes/GameOverScene.js'
+import CharacterSelectScene from './scenes/CharacterSelectScene.js'
 
 const config = { width: 800, height: 640 };
 
@@ -20,5 +21,5 @@ export default new Phaser.Game({
         default: 'arcade',
         arcade: { gravity: { y: 0 }, debug: false }
     },
-    scene: [TitleScene, IntroScene, LoadingScene, MainScene, PlayaScene, TransitionScene, GameOverScene, WinScene]
+    scene: [TitleScene, CharacterSelectScene, IntroScene, LoadingScene, MainScene, PlayaScene, TransitionScene, GameOverScene, WinScene]
 });

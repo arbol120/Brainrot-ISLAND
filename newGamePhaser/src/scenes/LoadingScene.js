@@ -33,6 +33,13 @@ export default class LoadingScene extends Scene {
     this.load.image('buzzball', 'assets/buzzball.png');
     this.load.image('diddy', 'assets/diddy.png');
     this.load.image('trump', 'assets/trump.png');
+    this.load.audio('jeff_theme', 'assets/jeff_theme.mp3');
+    this.load.image('agentea', 'assets/agentea.png');
+    this.load.image('agenteb', 'assets/agenteb.png');
+    this.load.image('agentet', 'assets/agentet.png');
+    this.load.image('jugador', 'assets/Jugador.png');
+    this.load.audio('diddy_theme', 'assets/diddytheme.mp3');
+    this.load.audio('trump_theme', 'assets/trumptheme.mp3');
 }
     create() {
         const cx = this.scale.width / 2;

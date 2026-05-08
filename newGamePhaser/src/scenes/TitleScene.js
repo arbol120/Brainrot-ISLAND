@@ -17,7 +17,7 @@ export default class TitleScene extends Scene {
         this.add.image(cx, cy, 'title')
             .setDisplaySize(this.scale.width, this.scale.height);
 
-        // Texto "presiona cualquier tecla"
+        
         const pressText = this.add.text(cx, this.scale.height - 60, 'PRESIONA CUALQUIER TECLA PARA INICIAR', {
             fontSize: '20px',
             fill: '#ffffff',
@@ -40,14 +40,13 @@ export default class TitleScene extends Scene {
         // Cualquier tecla para continuar
         this.input.keyboard.once('keydown', () => this.goNext());
 
-        // También click/tap
         this.input.once('pointerdown', () => this.goNext());
     }
 
-    goNext() {
-        this.cameras.main.fade(800, 0, 0, 0);
-        this.time.delayedCall(800, () => {
-            this.scene.start('IntroScene');
-        });
-    }
+  goNext() {
+    this.cameras.main.fade(800, 0, 0, 0);
+    this.time.delayedCall(800, () => {
+        this.scene.start('CharacterSelectScene'); // 👈 antes era IntroScene
+    });
+}
 }
