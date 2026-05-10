@@ -9,32 +9,46 @@ export default class RoundManager {
         this.rounds = [
             // Ronda 1: 5 Tung
             [
-                { type: 'tung', x: 100, y: 100 },
-                { type: 'tung', x: 600, y: 100 },
-                { type: 'tung', x: 100, y: 300 },
-                { type: 'tung', x: 600, y: 300 },
+                 { type: 'tung', x: 100, y: 100 },
+                 { type: 'tung', x: 600, y: 100 },
+                { type: 'tung', x: 100, y: 400 },
+                { type: 'tung', x: 600, y: 400 },
                 { type: 'tung', x: 350, y: 200 },
-                { type: 'emi',  x: 120, y: 100  },
+                { type: 'emi',  x: 200, y: 150 },
+                { type: 'tung', x: 700, y: 300 },
+                { type: 'tung', x: 400, y: 500 },
+                { type: 'tung', x: 150, y: 550 },
+                { type: 'tung', x: 650, y: 550 },
+                { type: 'emi',  x: 400, y: 350 },
+                { type: 'tung', x: 250, y: 300 },
             ],
             // Ronda 2: 6 Karkar
             [
-                { type: 'karkar', x: 100, y: 100 },
+                 { type: 'karkar', x: 100, y: 100 },
                 { type: 'karkar', x: 600, y: 100 },
-                { type: 'karkar', x: 100, y: 300 },
-                { type: 'karkar', x: 600, y: 300 },
-                { type: 'karkar', x: 200, y: 200 },
-                { type: 'karkar', x: 500, y: 200 },
+                { type: 'karkar', x: 100, y: 400 },
+                { type: 'karkar', x: 600, y: 400 },
+                { type: 'karkar', x: 200, y: 250 },
+                { type: 'karkar', x: 500, y: 250 },
+                { type: 'karkar', x: 350, y: 150 },
+                { type: 'karkar', x: 700, y: 500 },
+                { type: 'karkar', x: 150, y: 550 },
             ],
             // Ronda 3: mezcla
             [
                 { type: 'tung',   x: 100, y: 100 },
                 { type: 'tung',   x: 600, y: 100 },
                 { type: 'tung',   x: 350, y: 80  },
-                { type: 'karkar', x: 100, y: 300 },
-                { type: 'karkar', x: 600, y: 300 },
-                { type: 'karkar', x: 350, y: 350 },
-                { type: 'tung',   x: 200, y: 200 },
-                { type: 'karkar', x: 500, y: 200 },
+                { type: 'karkar', x: 100, y: 400 },
+                { type: 'karkar', x: 600, y: 400 },
+                { type: 'karkar', x: 350, y: 500 },
+                { type: 'tung',   x: 200, y: 250 },
+                { type: 'karkar', x: 500, y: 250 },
+                { type: 'karkar', x: 700, y: 300 },
+                { type: 'tung',   x: 150, y: 550 },
+                { type: 'karkar', x: 650, y: 550 },
+                { type: 'tung',   x: 400, y: 350 },
+                 { type: 'tung',   x: 250, y: 450 },
             ],
             // Ronda 4: JEFE Diddy
             [
@@ -261,7 +275,7 @@ export default class RoundManager {
             this.scene.time.delayedCall(2500, () => {
 
                 if (this.currentRound === 5) {
-                    // 👇 Trump con intro y música igual que Diddy y Jeff
+                 
                     this.stopMusic();
                 this.showBossIntro(
                      'trump',
@@ -274,7 +288,7 @@ export default class RoundManager {
                  }
                     );
                 } else if (this.currentRound === 6) {
-                    // 👇 Jeff: detiene música de Trump y muestra intro
+                   
                     this.stopMusic();
                     this.showBossIntro(
                         'jeff',

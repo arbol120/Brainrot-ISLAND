@@ -5,10 +5,10 @@ export default class Diddy extends Boss {
         super(
             scene, x, y,
             'diddy',
-            40,  
+            60,  
             2,   
             160,  
-            300   
+            1400
         );
         this.setScale(2.5)
         this.shootCooldown = 0; 

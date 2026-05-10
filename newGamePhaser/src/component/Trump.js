@@ -5,10 +5,10 @@ export default class Trump extends Boss {
         super(
             scene, x, y,
             'trump',
-            40,  
+            75,  
             2,    
             125,  
-            250   
+            1200
         );
          this.setScale(2.5)
         this.shootCooldown = 0;

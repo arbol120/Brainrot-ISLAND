@@ -59,9 +59,22 @@ export default class Boss extends Phaser.Physics.Arcade.Sprite {
         }
     }
 
-    shoot(player) {
-        this.scene.events.emit('enemyShoot', this, player, this.damage);
-    }
+   shoot(player) {
+    // Disparo principal hacia el jugador
+    this.scene.events.emit('enemyShoot', this, player, this.damage);
+
+    //  dispara en 4 direcciones extra simultáneamente
+    const directions = [
+        { x: 1,  y: 0  },
+        { x: -1, y: 0  },
+        { x: 0,  y: 1  },
+        { x: 0,  y: -1 },
+    ];
+
+    directions.forEach(dir => {
+        this.scene.events.emit('enemyShootDir', this, dir, this.damage);
+    });
+}
 
     takeDamage(amount = 1) {
         this.health -= amount;

@@ -40,6 +40,7 @@ export default class LoadingScene extends Scene {
     this.load.image('jugador', 'assets/Jugador.png');
     this.load.audio('diddy_theme', 'assets/diddytheme.mp3');
     this.load.audio('trump_theme', 'assets/trumptheme.mp3');
+    this.load.audio('megalovania', 'assets/Megalovania.mp3');
 }
     create() {
         const cx = this.scale.width / 2;

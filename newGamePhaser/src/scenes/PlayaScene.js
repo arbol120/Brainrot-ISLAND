@@ -17,19 +17,25 @@ export default class PlayaScene extends MainScene {
 
    create() {
     super.create();
+
+    // 👇 detiene Megalovania al entrar a PlayaScene
+    if (this.bgMusic) {
+        this.bgMusic.stop();
+        this.bgMusic.destroy();
+        this.bgMusic = null;
+    }
+
     if (this.registry.get('currentScore')) {
         this.scoreManager.score = this.registry.get('currentScore');
         this.scoreManager.scoreText.setText(`SCORE: ${this.scoreManager.score}`);
     }
 
-    // 👇 destruye todas las barras de vida anteriores
     this.enemies.getChildren().forEach(e => {
         if (e.hpBarBg)   e.hpBarBg.destroy();
         if (e.hpBarFill) e.hpBarFill.destroy();
         if (e.hpBarName) e.hpBarName.destroy();
     });
 
-    // limpia enemigos spawneados por super.create()
     this.enemies.clear(true, true);
     this.roundManager.transitioning = true;
 
