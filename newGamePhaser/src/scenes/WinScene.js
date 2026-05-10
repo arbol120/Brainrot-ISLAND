@@ -8,9 +8,16 @@ export default class WinScene extends Scene {
     create() {
         const cx = this.scale.width / 2;
         const cy = this.scale.height / 2;
+        const score = this.registry.get('finalScore') || 0;
 
         // Fondo oscuro
         this.add.rectangle(cx, cy, this.scale.width, this.scale.height, 0x000000, 0.9);
+        this.add.text(cx, cy + 20, `PUNTUACIÓN: ${score}`, {
+            fontSize: '28px',
+            fill: '#ffdd00',
+                stroke: '#000',
+            strokeThickness: 4
+        }).setOrigin(0.5);
 
         // Título
         this.add.text(cx, cy - 120, '¡MISIÓN CUMPLIDA!', {

@@ -9,6 +9,7 @@ import Diddy from "../component/Diddy.js";
 import Jeff  from "../component/Jeff.js";
 import Trump from "../component/Trump.js";
 import Scene from "../engine/Scene.js";
+import ScoreManager from "../component/ScoreManager.js";
 
 export default class MainScene extends Scene {
     constructor(key = 'MainScene') {
@@ -57,6 +58,7 @@ export default class MainScene extends Scene {
 
         this.healthBar   = new HealthBar(this);
         this.itemManager = new ItemManager(this);
+        this.scoreManager = new ScoreManager(this);
 
         this.roundManager = new RoundManager(this, this.startRound);
         this.roundManager.spawnRound(this.enemies);
@@ -65,17 +67,21 @@ export default class MainScene extends Scene {
         this.physics.add.collider(this.enemies, this.layer);
 
         this.physics.add.overlap(this.player, this.enemyBullets, (player, bullet) => {
-            const damage = bullet.damage ?? 1;
-            bullet.destroy();
-            this.healthBar.takeDamage(damage);
-        });
+    const damage = bullet.damage ?? 1;
+    bullet.destroy();
+    this.healthBar.takeDamage(damage);
+    // 👇 resta puntos por recibir daño
+    this.scoreManager.addScore(-15);
+});
 
         this.physics.add.overlap(this.playerBullets, this.enemies, (bullet, enemy) => {
-            bullet.destroy();
-            const dmg = this.itemManager.getDamage(1);
-            console.log('Golpeando a:', enemy.texture.key, 'vida:', enemy.health); // 👈 tempo
-            enemy.takeDamage(dmg);
-        });
+    bullet.destroy();
+    const dmg = this.itemManager.getDamage(1);
+    enemy.takeDamage(dmg);
+    // 👇 suma puntos por golpear
+    const points = enemy.isBoss ? 50 : 10;
+    this.scoreManager.addScore(points);
+});
 
         this.events.on('enemyShoot', (enemy, target, damage) => {
             const bullet = this.enemyBullets.create(enemy.x, enemy.y, 'bullet');
@@ -100,6 +106,8 @@ export default class MainScene extends Scene {
 
         // 👇 un solo playerDead con todo
         this.events.on('playerDead', () => {
+            this.registry.set('finalScore', this.scoreManager.score);
+        this.scoreManager.saveScore(this.registry.get('playerName'));
             if (this.sound.get('jeff_theme')) {
                 this.sound.stopByKey('jeff_theme');
             }
@@ -111,16 +119,17 @@ export default class MainScene extends Scene {
         });
 
         this.events.on('changeMap', () => {
-            this.registry.set('currentHealth', this.healthBar.currentHealth);
-            this.registry.set('maxHealth',     this.healthBar.maxHealth);
-            this.registry.set('pizzaCount',    this.healthBar.pizzaCount);
-            this.registry.set('powerDamage',   this.itemManager.powerDamageActive);
+    this.registry.set('currentHealth', this.healthBar.currentHealth);
+    this.registry.set('maxHealth',     this.healthBar.maxHealth);
+    this.registry.set('pizzaCount',    this.healthBar.pizzaCount);
+    this.registry.set('powerDamage',   this.itemManager.powerDamageActive);
+    this.registry.set('currentScore',  this.scoreManager.score); // 👈 guarda score
 
-            this.scene.start('TransitionScene', {
-                nextScene: 'PlayaScene',
-                message:   '¡Nuevas amenazas en la playa!'
-            });
-        });
+    this.scene.start('TransitionScene', {
+        nextScene: 'PlayaScene',
+        message:   '¡Nuevas amenazas en la playa!'
+    });
+});
     }
 
     update(time) {

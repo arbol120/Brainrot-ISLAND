@@ -17,6 +17,10 @@ export default class PlayaScene extends MainScene {
 
    create() {
     super.create();
+    if (this.registry.get('currentScore')) {
+        this.scoreManager.score = this.registry.get('currentScore');
+        this.scoreManager.scoreText.setText(`SCORE: ${this.scoreManager.score}`);
+    }
 
     // 👇 destruye todas las barras de vida anteriores
     this.enemies.getChildren().forEach(e => {

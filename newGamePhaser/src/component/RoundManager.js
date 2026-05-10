@@ -293,6 +293,9 @@ export default class RoundManager {
             });
         } else {
             this.stopMusic();
+            // En RoundManager cuando ganas:
+            this.scene.registry.set('finalScore', this.scene.scoreManager.score);
+            this.scene.scoreManager.saveScore(this.scene.registry.get('playerName'));
             this.showRoundBanner('¡GANASTE! 🎉');
             this.scene.time.delayedCall(3000, () => {
                 this.scene.scene.start('WinScene');
