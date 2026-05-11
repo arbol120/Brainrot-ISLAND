@@ -2,7 +2,7 @@ import Boss from "./Boss.js";
 
 export default class Jeff extends Boss {
     constructor(scene, x, y) {
-        super(scene, x, y, 'jeff', 80, 3, 140, 1100);
+        super(scene, x, y, 'jeff', 80, 1.5, 140, 1200);
         this.setScale(2.5);
         this.shootCooldown = 0;
     }
